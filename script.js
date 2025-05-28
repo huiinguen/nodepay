@@ -60,9 +60,12 @@ function renderCredentialSets() {
   const credentialList = document.getElementById("credential-list");
   credentialList.innerHTML = "";
 
-  credentialList.innerHTML += `
-    <button onclick="logout()" style="margin-bottom: 1rem;">Đăng xuất</button>
-  `;
+  // Thêm nút đăng xuất ở đầu danh sách
+  const logoutButton = document.createElement("button");
+  logoutButton.id = "logout-button";
+  logoutButton.textContent = "Đăng xuất";
+  logoutButton.onclick = logout;
+  credentialList.appendChild(logoutButton);
 
   credentialSets.forEach((cred, index) => {
     const setDiv = document.createElement("div");
@@ -80,7 +83,7 @@ function renderCredentialSets() {
     credentialList.appendChild(setDiv);
   });
 
-  // Thêm sự kiện cho nút cuộn
+  // Thêm sự kiện cho nút cuộn, hỗ trợ cả click và touchstart
   const scrollUpBtn = document.getElementById("scroll-up");
   const scrollDownBtn = document.getElementById("scroll-down");
 
@@ -88,10 +91,18 @@ function renderCredentialSets() {
     scrollUpBtn.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
+    scrollUpBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   }
 
   if (scrollDownBtn) {
     scrollDownBtn.addEventListener("click", () => {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    });
+    scrollDownBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     });
   }
