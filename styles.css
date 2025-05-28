@@ -61,6 +61,18 @@ button:hover {
   background-color: #0056b3;
 }
 
+#logout-button {
+  display: block;
+  margin: 0 auto 1rem auto;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #dc3545;
+}
+
+#logout-button:hover {
+  background-color: #c82333;
+}
+
 #milestone-message {
   color: green;
   font-weight: bold;
@@ -104,11 +116,18 @@ button:hover {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  z-index: 1000; /* Đảm bảo nút không bị che */
+  opacity: 0.7; /* Mờ nhẹ khi không cuộn */
+  transition: opacity 0.3s;
+}
+
+.scroll-buttons:hover {
+  opacity: 1; /* Hiện rõ khi hover */
 }
 
 .scroll-buttons button {
-  width: 40px;
-  height: 40px;
+  width: 48px; /* Tăng kích thước cho dễ chạm trên di động */
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,6 +135,7 @@ button:hover {
   border-radius: 50%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s, transform 0.2s;
+  touch-action: manipulation; /* Cải thiện tương tác cảm ứng */
 }
 
 .scroll-buttons button:hover {
@@ -124,7 +144,7 @@ button:hover {
 }
 
 .scroll-buttons button i {
-  font-size: 1.2rem;
+  font-size: 1.4rem; /* Tăng kích thước icon */
 }
 
 /* Responsive cho thiết bị nhỏ */
@@ -150,12 +170,17 @@ button:hover {
     font-size: 0.9rem;
   }
 
+  #logout-button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+
   .scroll-buttons button {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
   }
 
   .scroll-buttons button i {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 }
