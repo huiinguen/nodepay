@@ -24,6 +24,7 @@ const credentialSets = [
   { username: "huiik16", password: "H112233y@" },
   { username: "huiik17", password: "H112233y@" },
   { username: "huiik18", password: "H112233y@" },
+   { username: "huiik19", password: "H112233y@" },
 ];
 
 // Hàm kiểm tra trạng thái đăng nhập
@@ -39,7 +40,7 @@ function handleLogin(event) {
 
   if (password === "1212@") {
     localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("sessionTimeout", Date.now() + 8 * 60 * 1000); // 8 phút
+    localStorage.setItem("sessionTimeout", Date.now() + 9 * 60 * 1000); // 9 phút
     window.location.href = "index.html";
   } else {
     errorMessage.textContent = "Mật khẩu không đúng!";
@@ -79,6 +80,43 @@ function startCountdown() {
   setInterval(updateTimer, 1000);
 }
 
+// Biến lưu trữ trạng thái nhấp user và pass
+let clickTracker = { userClicked: false, passClicked: false };
+
+// Hàm tự động cuộn xuống khi đã nhấp cả user và pass
+function autoScrollDown() {
+  const currentPosition = window.scrollY;
+  const viewportHeight = window.innerHeight;
+  const documentHeight = document.body.scrollHeight;
+
+  // Chỉ cuộn nếu chưa ở gần cuối trang
+  if (currentPosition + viewportHeight < documentHeight - 50) {
+    window.scrollBy({ top: 100, behavior: "smooth" }); // Cuộn xuống 100px
+  }
+}
+
+// Hàm sao chép tên người dùng
+function copyUsername(index) {
+  navigator.clipboard.writeText(credentialSets[index].username);
+  clickTracker.userClicked = true;
+  if (clickTracker.userClicked && clickTracker.passClicked) {
+    autoScrollDown();
+    clickTracker.userClicked = false; // Reset sau khi cuộn
+    clickTracker.passClicked = false; // Reset sau khi cuộn
+  }
+}
+
+// Hàm sao chép mật khẩu
+function copyPassword(index) {
+  navigator.clipboard.writeText(credentialSets[index].password);
+  clickTracker.passClicked = true;
+  if (clickTracker.userClicked && clickTracker.passClicked) {
+    autoScrollDown();
+    clickTracker.userClicked = false; // Reset sau khi cuộn
+    clickTracker.passClicked = false; // Reset sau khi cuộn
+  }
+}
+
 // Hàm hiển thị danh sách thông tin đăng nhập
 function renderCredentialSets() {
   if (!isLoggedIn()) {
@@ -99,7 +137,7 @@ function renderCredentialSets() {
   // Thêm đồng hồ đếm ngược
   const timerDisplay = document.createElement("div");
   timerDisplay.id = "countdown-timer";
-  timerDisplay.textContent = "Thời gian còn lại: 08:00";
+  timerDisplay.textContent = "Thời gian còn lại: 09:00";
   credentialList.appendChild(timerDisplay);
 
   // Hiển thị 2 cặp user/pass trên mỗi hàng, bỏ hàng cuối nếu chỉ có 1 cặp
@@ -154,30 +192,6 @@ function renderCredentialSets() {
 
   // Khởi động đồng hồ đếm ngược
   startCountdown();
-}
-
-// Hàm sao chép tên người dùng
-function copyUsername(index) {
-  navigator.clipboard.writeText(credentialSets[index].username);
-  autoScrollDown();
-}
-
-// Hàm sao chép mật khẩu
-function copyPassword(index) {
-  navigator.clipboard.writeText(credentialSets[index].password);
-  autoScrollDown();
-}
-
-// Hàm tự động cuộn xuống một chút
-function autoScrollDown() {
-  const currentPosition = window.scrollY;
-  const viewportHeight = window.innerHeight;
-  const documentHeight = document.body.scrollHeight;
-
-  // Chỉ cuộn nếu chưa ở gần cuối trang
-  if (currentPosition + viewportHeight < documentHeight - 50) {
-    window.scrollBy({ top: 100, behavior: "smooth" }); // Cuộn xuống 100px
-  }
 }
 
 // Thêm sự kiện cho form đăng nhập
