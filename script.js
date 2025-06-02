@@ -24,9 +24,12 @@ const credentialSets = [
   { username: "huiik16", password: "H112233y@" },
   { username: "huiik17", password: "H112233y@" },
   { username: "huiik18", password: "H112233y@" },
-   { username: "huiik19", password: "H112233y@" },
-     { username: "huiik20", password: "H112233y@" },
-     { username: "huiik21", password: "H112233y@" },
+  { username: "huiik19", password: "H112233y@" },
+  { username: "huiik20", password: "H112233y@" },
+  { username: "huiik21", password: "H112233y@" },
+  { username: "huiik22", password: "H112233y@" },
+  { username: "huiik23", password: "H112233y@" },
+   { username: "huiik24", password: "H112233y@" },
 ];
 
 // Hàm kiểm tra trạng thái đăng nhập
@@ -42,7 +45,7 @@ function handleLogin(event) {
 
   if (password === "1212@") {
     localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("sessionTimeout", Date.now() + 9 * 60 * 1000); // 9 phút
+    localStorage.setItem("sessionTimeout", Date.now() + 18 * 60 * 1000); // 9 phút
     window.location.href = "index.html";
   } else {
     errorMessage.textContent = "Mật khẩu không đúng!";
