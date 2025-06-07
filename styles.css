@@ -16,7 +16,7 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 100%;
-  max-width: 800px; /* Tăng max-width để chứa 2 cặp */
+  max-width: 500px; /* Điều chỉnh lại max-width cho 1 cặp mỗi hàng */
   box-sizing: border-box;
 }
 
@@ -25,33 +25,32 @@ h1 {
   margin-bottom: 1rem;
 }
 
-.credential-set {
-  margin: 1.5rem 0;
+/* Định dạng mới cho mỗi cặp riêng lẻ */
+.credential-set-single {
+  margin: 1rem 0; /* Khoảng cách giữa các cặp */
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
 }
 
-.info-section {
+.info-section-single {
   display: flex;
+  justify-content: space-between; /* Đẩy các phần tử ra xa nhau */
   align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
+  gap: 0.8rem; /* Khoảng cách giữa các phần tử */
 }
 
-.cred-pair {
+.cred-pair-single {
   display: flex;
   gap: 0.5rem;
   align-items: center;
 }
 
-.separator {
-  font-size: 1rem;
-  color: #333;
-  font-weight: bold;
-}
-
 .divider {
   width: 100%;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #eee; /* Đường phân cách nhẹ hơn */
   margin: 1rem 0;
 }
 
@@ -162,10 +161,63 @@ button:hover {
   font-size: 1.4rem;
 }
 
+/* CSS cho ô đếm ngày riêng cho TỪNG CẶP */
+.day-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap; /* Cho phép xuống dòng nếu cần */
+}
+
+.day-counter-individual {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #0056b3; /* Màu sắc nổi bật hơn */
+  background-color: #e6f2ff; /* Nền nhẹ nhàng */
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  min-width: 60px; /* Đảm bảo đủ rộng */
+  text-align: center;
+}
+
+/* Kiểu cho ngày quan trọng */
+.important-day {
+  background-color: #ffcc00; /* Màu vàng nổi bật */
+  color: #333;
+  border: 1px solid #ffaa00;
+  animation: pulse 1.5s infinite; /* Hiệu ứng nhấp nháy */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255, 204, 0, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.9);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255, 204, 0, 0.7);
+  }
+}
+
+.set-date-button {
+    background-color: #28a745; /* Màu xanh lá cây cho nút thiết lập */
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+}
+
+.set-date-button:hover {
+    background-color: #218838;
+}
+
+
 /* Responsive cho thiết bị nhỏ */
 @media (max-width: 600px) {
   .container {
-    padding: 1rem;
+    padding: 0.8rem;
     max-width: 100%;
   }
 
@@ -173,18 +225,20 @@ button:hover {
     font-size: 1.2rem;
   }
 
-  .info-section {
-    flex-direction: column;
+  .info-section-single {
+    flex-direction: column; /* Xếp chồng trên màn hình nhỏ */
+    align-items: flex-start; /* Căn trái các mục */
     gap: 0.5rem;
   }
 
-  .cred-pair {
-    flex-direction: column;
-    gap: 0.5rem;
+  .cred-pair-single {
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
+    justify-content: space-between; /* Đẩy user và pass ra xa nhau */
   }
 
-  .separator {
-    display: none; /* Ẩn dấu | trên màn hình nhỏ */
+  .day-controls {
+      width: 100%;
+      justify-content: space-between;
   }
 
   button {
@@ -205,6 +259,16 @@ button:hover {
     font-size: 0.9rem;
   }
 
+  .day-counter-individual {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .set-date-button {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+  }
+
   .scroll-buttons button {
     width: 40px;
     height: 40px;
@@ -218,14 +282,14 @@ button:hover {
 /* Responsive cho thiết bị lớn hơn */
 @media (min-width: 601px) and (max-width: 900px) {
   .container {
-    max-width: 600px;
+    max-width: 550px;
   }
 
-  .info-section {
+  .info-section-single {
     gap: 0.8rem;
   }
 
-  .cred-pair {
+  .cred-pair-single {
     gap: 0.4rem;
   }
 
