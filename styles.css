@@ -5,24 +5,26 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  background-color: #f0f0f0;
+  background-color: #282828; /* Màu nền đen xám nhẹ */
+  color: #eeeeee; /* Màu chữ sáng hơn để dễ đọc trên nền tối */
   padding: 1rem;
 }
 
 .container {
-  background-color: white;
+  background-color: white; /* Giữ màu trắng cho container chính */
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Shadow đậm hơn trên nền tối */
   text-align: center;
   width: 100%;
-  max-width: 500px; /* Điều chỉnh lại max-width cho 1 cặp mỗi hàng */
+  max-width: 500px;
   box-sizing: border-box;
 }
 
 h1 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  color: #333333; /* Màu chữ cho h1 trong container trắng */
 }
 
 /* Định dạng mới cho mỗi cặp riêng lẻ */
@@ -32,6 +34,13 @@ h1 {
   border: 1px solid #e0e0e0;
   border-radius: 6px;
   padding: 0.8rem 1rem;
+  transition: background-color 0.3s ease; /* Thêm transition để chuyển màu mượt mà */
+  color: #333333; /* Đảm bảo chữ trong mỗi cặp cũng tối màu trên nền sáng của nó */
+}
+
+/* Màu khi đã copy username */
+.credential-set-single.copied-user {
+  background-color: #cccccc; /* Một màu xám đậm hơn một chút so với #e0e0e0 để rõ ràng hơn */
 }
 
 .info-section-single {
@@ -48,16 +57,21 @@ h1 {
   align-items: center;
 }
 
+.index-number {
+  font-weight: bold;
+  color: #555555; /* Màu cho số thứ tự */
+}
+
 .divider {
   width: 100%;
-  border-top: 1px solid #eee; /* Đường phân cách nhẹ hơn */
+  border-top: 1px solid #555; /* Màu phân cách đậm hơn để nhìn rõ trên nền tối */
   margin: 1rem 0;
 }
 
 button {
   padding: 0.4rem 0.8rem;
   background-color: #007bff;
-  color: white;
+  color: white; /* Đảm bảo chữ trên nút màu trắng */
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -74,6 +88,7 @@ button:hover {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   background-color: #dc3545;
+  color: white; /* Đảm bảo chữ trên nút đăng xuất màu trắng */
 }
 
 #logout-button:hover {
@@ -82,7 +97,7 @@ button:hover {
 
 #countdown-timer {
   font-size: 1rem;
-  color: #333;
+  color: #555; /* Màu tối hơn để dễ đọc trên nền trắng của container */
   margin: 1rem 0;
   font-weight: bold;
 }
@@ -93,6 +108,7 @@ button:hover {
   margin-top: 1rem;
 }
 
+/* Login form adjustments */
 #login-form {
   display: flex;
   flex-direction: column;
@@ -110,6 +126,7 @@ button:hover {
 #login-form label {
   margin-bottom: 0.5rem;
   font-weight: bold;
+  color: #333333; /* Màu chữ cho label trong form login */
 }
 
 #login-form input {
@@ -117,12 +134,19 @@ button:hover {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
+  color: #333333; /* Màu chữ trong input */
+  background-color: white; /* Đảm bảo nền input là trắng */
 }
 
 #login-form button {
   margin-top: 1rem;
 }
 
+#error-message {
+  color: red;
+}
+
+/* Scroll buttons */
 .scroll-buttons {
   position: fixed;
   bottom: 20px;
@@ -159,6 +183,7 @@ button:hover {
 
 .scroll-buttons button i {
   font-size: 1.4rem;
+  color: white; /* Đảm bảo icon màu trắng */
 }
 
 /* CSS cho ô đếm ngày riêng cho TỪNG CẶP */
@@ -166,26 +191,26 @@ button:hover {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    flex-wrap: wrap; /* Cho phép xuống dòng nếu cần */
+    flex-wrap: wrap;
 }
 
 .day-counter-individual {
   font-size: 0.85rem;
   font-weight: bold;
-  color: #0056b3; /* Màu sắc nổi bật hơn */
+  color: #0056b3; /* Màu sắc nổi bật hơn trên nền sáng của cặp */
   background-color: #e6f2ff; /* Nền nhẹ nhàng */
   padding: 0.3rem 0.6rem;
   border-radius: 4px;
-  min-width: 60px; /* Đảm bảo đủ rộng */
+  min-width: 60px;
   text-align: center;
 }
 
 /* Kiểu cho ngày quan trọng */
 .important-day {
   background-color: #ffcc00; /* Màu vàng nổi bật */
-  color: #333;
+  color: #333; /* Màu chữ tối trên nền vàng */
   border: 1px solid #ffaa00;
-  animation: pulse 1.5s infinite; /* Hiệu ứng nhấp nháy */
+  animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
@@ -204,15 +229,15 @@ button:hover {
 }
 
 .set-date-button {
-    background-color: #28a745; /* Màu xanh lá cây cho nút thiết lập */
+    background-color: #28a745;
     padding: 0.3rem 0.7rem;
     font-size: 0.8rem;
+    color: white; /* Đảm bảo chữ trên nút màu trắng */
 }
 
 .set-date-button:hover {
     background-color: #218838;
 }
-
 
 /* Responsive cho thiết bị nhỏ */
 @media (max-width: 600px) {
@@ -226,14 +251,14 @@ button:hover {
   }
 
   .info-section-single {
-    flex-direction: column; /* Xếp chồng trên màn hình nhỏ */
-    align-items: flex-start; /* Căn trái các mục */
+    flex-direction: column;
+    align-items: flex-start;
     gap: 0.5rem;
   }
 
   .cred-pair-single {
-    width: 100%; /* Chiếm toàn bộ chiều rộng */
-    justify-content: space-between; /* Đẩy user và pass ra xa nhau */
+    width: 100%;
+    justify-content: space-between;
   }
 
   .day-controls {
