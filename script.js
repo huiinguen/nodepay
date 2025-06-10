@@ -1,4 +1,4 @@
-// Dữ liệu ban đầu (chưa có startDate), sẽ được cập nhật khi tải hoặc thiết lập
+// Dữ liệu ban đầu (chưa có startDate và copiedUser), sẽ được cập nhật khi tải hoặc thiết lập
 let credentialSets = [
   { username: "huiinguyen", password: "H11223344y@" },
   { username: "huiikk", password: "H112233y@" },
@@ -39,9 +39,11 @@ function loadCredentialSets() {
   if (storedData) {
     // Nếu có dữ liệu đã lưu, phân tích cú pháp JSON
     credentialSets = JSON.parse(storedData);
+    // Đảm bảo mỗi cặp có thuộc tính copiedUser nếu chưa có (cho các dữ liệu cũ)
+    credentialSets = credentialSets.map(cred => ({ ...cred, copiedUser: cred.hasOwnProperty('copiedUser') ? cred.copiedUser : false }));
   } else {
-    // Nếu chưa có, đảm bảo mỗi cặp có startDate ban đầu là null
-    credentialSets = credentialSets.map(cred => ({ ...cred, startDate: null }));
+    // Nếu chưa có, đảm bảo mỗi cặp có startDate ban đầu là null và copiedUser là false
+    credentialSets = credentialSets.map(cred => ({ ...cred, startDate: null, copiedUser: false }));
     saveCredentialSets(); // Lưu lại lần đầu
   }
 }
@@ -68,6 +70,13 @@ function handleLogin(event) {
   if (password === "1212@") {
     localStorage.setItem("isLoggedIn", "true");
     localStorage.setItem("sessionTimeout", Date.now() + 18 * 60 * 1000); // 18 phút
+
+    // Khi đăng nhập thành công, reset trạng thái copiedUser cho tất cả các cặp
+    credentialSets.forEach(cred => {
+        cred.copiedUser = false;
+    });
+    saveCredentialSets(); // Lưu lại trạng thái đã reset
+    
     window.location.href = "index.html";
   } else {
     errorMessage.textContent = "Mật khẩu không đúng!";
@@ -78,8 +87,13 @@ function handleLogin(event) {
 function logout() {
   localStorage.removeItem("isLoggedIn");
   localStorage.removeItem("sessionTimeout");
-  // Có thể xóa credentialSetsData nếu muốn reset ngày hoàn toàn khi đăng xuất
-  // localStorage.removeItem("credentialSetsData");
+  
+  // Khi đăng xuất, reset trạng thái copiedUser cho tất cả các cặp
+  credentialSets.forEach(cred => {
+      cred.copiedUser = false;
+  });
+  saveCredentialSets(); // Lưu lại trạng thái đã reset
+
   window.location.href = "login.html";
 }
 
@@ -94,7 +108,7 @@ function startCountdown() {
     const timeLeft = timeout - now;
 
     if (timeLeft <= 0) {
-      logout();
+      logout(); // Sẽ reset copiedUser khi gọi logout
       return;
     }
 
@@ -127,6 +141,9 @@ function autoScrollDown() {
 // Hàm sao chép tên người dùng
 function copyUsername(index) {
   navigator.clipboard.writeText(credentialSets[index].username);
+  credentialSets[index].copiedUser = true; // Đánh dấu đã sao chép user
+  saveCredentialSets(); // Lưu trạng thái
+  renderCredentialSets(); // Render lại để cập nhật màu sắc
   clickTracker.userClicked = true;
   if (clickTracker.userClicked && clickTracker.passClicked) {
     autoScrollDown();
@@ -267,11 +284,14 @@ function renderCredentialSets() {
   credentialSets.forEach((cred, index) => {
     const setDiv = document.createElement("div");
     setDiv.className = "credential-set-single"; // Class cho từng cặp
+    if (cred.copiedUser) {
+      setDiv.classList.add('copied-user'); // Thêm class nếu user đã được copy
+    }
 
     setDiv.innerHTML = `
       <div class="info-section-single">
         <div class="cred-pair-single">
-          <button onclick="copyUsername(${index})">${cred.username}</button>
+          <span class="index-number">${index + 1}.</span> <button onclick="copyUsername(${index})">${cred.username}</button>
           <button onclick="copyPassword(${index})">Copy pass</button>
         </div>
         <div class="day-controls">
