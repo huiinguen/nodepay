@@ -321,4 +321,48 @@ button:hover {
   button {
     font-size: 0.85rem;
   }
+}/* Định dạng nút huy hiệu */
+.badge-button {
+  background-color: #ffc107; /* Màu vàng cam */
+  color: #333; /* Màu chữ/icon đen */
+  border: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-button:hover {
+  background-color: #e0a800; /* Màu vàng đậm hơn khi hover */
+}
+
+.badge-button i {
+  color: #333; /* Đảm bảo icon trong nút có màu đen */
+}
+
+/* Định dạng icon huy hiệu sẽ hiển thị */
+.badge-icon {
+  margin-left: 0.5rem;
+  font-size: 1.2rem;
+  color: #28a745; /* Màu xanh lá cây cho icon nổi bật */
+  vertical-align: middle; /* Căn chỉnh icon với văn bản */
+  display: flex; /* Sử dụng flexbox để căn giữa icon */
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-icon i {
+    /* Không cần thêm màu ở đây nếu đã định nghĩa ở .badge-icon */
+}
+
+
+/* Điều chỉnh lại khoảng cách giữa các button trong cred-pair-single nếu cần */
+.cred-pair-single {
+  display: flex;
+  gap: 0.5rem; /* Giữ khoảng cách giữa các nút */
+  align-items: center;
+  flex-wrap: wrap; /* Đảm bảo các nút xuống dòng nếu không đủ chỗ */
 }
