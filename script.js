@@ -37,24 +37,83 @@ let credentialSets = [
 ];
 
 // Hàm tải dữ liệu từ localStorage hoặc dùng dữ liệu mặc định
+// Đã được cập nhật để hợp nhất dữ liệu từ localStorage với danh sách mặc định trong code
 function loadCredentialSets() {
+  const defaultCredentialSets = [ // Lưu trữ danh sách mặc định để hợp nhất
+    { username: "huiinguyen", password: "H11223344y@" },
+    { username: "huiikk", password: "H112233y@" },
+    { username: "huiikkk", password: "H112233y@" },
+    { username: "huiitran", password: "H112233y@" },
+    { username: "huiivan", password: "H112233y@" },
+    { username: "huiiha", password: "H112233y@" },
+    { username: "huiiheo", password: "H112233y@" },
+    { username: "huiimeo", password: "H112233y@" },
+    { username: "hdddd", password: "H112233y@" },
+    { username: "huiik3", password: "H112233y@" },
+    { username: "huiik4", password: "H112233y@" },
+    { username: "huiik5", password: "H112233y@" },
+    { username: "huiik6", password: "H112233y@" },
+    { username: "huiik7", password: "H112233y@" },
+    { username: "huiik8", password: "H112233y@" },
+    { username: "huiik9", password: "H112233y@" },
+    { username: "huiik10", password: "H112233y@" },
+    { username: "huiik11", password: "H112233y@" },
+    { username: "huiik12", password: "H112233y@" },
+    { username: "huiik13", password: "H112233y@" },
+    { username: "huiik14", password: "H112233y@" },
+    { username: "huiik15", password: "H112233y@" },
+    { username: "huiik16", password: "H112233y@" },
+    { username: "huiik17", password: "H112233y@" },
+    { username: "huiik18", password: "H112233y@" },
+    { username: "huiik19", password: "H112233y@" },
+    { username: "huiik20", password: "H112233y@" },
+    { username: "huiik21", password: "H112233y@" },
+    { username: "huiik22", password: "H112233y@" },
+    { username: "huiik23", password: "H112233y@" },
+    { username: "huiik24", password: "H112233y@" },
+    { username: "huiik25", password: "H112233y@" },
+    { username: "huiik26", password: "H112233y@" },
+    { username: "huiik27", password: "H112233y@" },
+  ];
+
   const storedData = localStorage.getItem("credentialSetsData");
+  let loadedCredentialSets = [];
+
   if (storedData) {
-    credentialSets = JSON.parse(storedData);
-    // Đảm bảo mỗi cặp có thuộc tính copiedUser và hasBadge nếu chưa có
-    credentialSets = credentialSets.map(cred => ({
-        ...cred,
-        copiedUser: cred.hasOwnProperty('copiedUser') ? cred.copiedUser : false,
-        hasBadge: cred.hasOwnProperty('hasBadge') ? cred.hasBadge : false // Thêm thuộc tính hasBadge
-    }));
-  } else {
-    // Nếu chưa có, đảm bảo mỗi cặp có startDate ban đầu là null, copiedUser là false và hasBadge là false
-    credentialSets = credentialSets.map(cred => ({ ...cred, startDate: null, copiedUser: false, hasBadge: false }));
-    saveCredentialSets(); // Lưu lại lần đầu
+    loadedCredentialSets = JSON.parse(storedData);
   }
+
+  // Hợp nhất dữ liệu: Bắt đầu với danh sách mặc định
+  let mergedCredentialSets = [...defaultCredentialSets];
+
+  // Cập nhật các thuộc tính từ dữ liệu đã lưu nếu có
+  mergedCredentialSets = mergedCredentialSets.map(defaultCred => {
+    const foundInLoaded = loadedCredentialSets.find(loadedCred => loadedCred.username === defaultCred.username);
+    if (foundInLoaded) {
+      // Nếu tìm thấy trong dữ liệu đã lưu, sử dụng các thuộc tính đã lưu
+      return {
+        ...defaultCred, // Giữ username, password từ mặc định
+        startDate: foundInLoaded.startDate || null,
+        copiedUser: foundInLoaded.hasOwnProperty('copiedUser') ? foundInLoaded.copiedUser : false,
+        hasBadge: foundInLoaded.hasOwnProperty('hasBadge') ? foundInLoaded.hasBadge : false
+      };
+    } else {
+      // Nếu không tìm thấy, khởi tạo với các giá trị mặc định
+      return {
+        ...defaultCred,
+        startDate: null,
+        copiedUser: false,
+        hasBadge: false
+      };
+    }
+  });
+
+  credentialSets = mergedCredentialSets;
+  saveCredentialSets(); // Lưu lại dữ liệu đã hợp nhất vào localStorage
 }
 
 // Hàm lưu dữ liệu vào localStorage
+// Đây là bước GHI ĐÈ dữ liệu. Mọi thay đổi trong 'credentialSets' sẽ được lưu lại toàn bộ.
 function saveCredentialSets() {
   localStorage.setItem("credentialSetsData", JSON.stringify(credentialSets));
 }
@@ -78,9 +137,10 @@ function handleLogin(event) {
     localStorage.setItem("sessionTimeout", Date.now() + 20 * 60 * 1000); // 20 phút
 
     // Khi đăng nhập thành công, reset trạng thái copiedUser cho tất cả các cặp
+    // Đây là một dạng cập nhật ghi đè cho thuộc tính 'copiedUser'
     credentialSets.forEach(cred => {
         cred.copiedUser = false;
-        // cred.hasBadge = false; // Bỏ dòng này để giữ nguyên trạng thái huy hiệu
+        // cred.hasBadge = false; // Bỏ dòng này để giữ nguyên trạng thái huy hiệu (theo yêu cầu của bạn)
     });
     saveCredentialSets(); // Lưu lại trạng thái đã reset
 
@@ -96,9 +156,10 @@ function logout() {
   localStorage.removeItem("sessionTimeout");
 
   // Khi đăng xuất, reset trạng thái copiedUser cho tất cả các cặp
+  // Đây cũng là một dạng cập nhật ghi đè cho thuộc tính 'copiedUser'
   credentialSets.forEach(cred => {
       cred.copiedUser = false;
-      // cred.hasBadge = false; // Bỏ dòng này để giữ nguyên trạng thái huy hiệu
+      // cred.hasBadge = false; // Bỏ dòng này để giữ nguyên trạng thái huy hiệu (theo yêu cầu của bạn)
   });
   saveCredentialSets(); // Lưu lại trạng thái đã reset
 
@@ -150,7 +211,7 @@ function autoScrollDown() {
 function copyUsername(index) {
   navigator.clipboard.writeText(credentialSets[index].username);
   credentialSets[index].copiedUser = true; // Đánh dấu đã sao chép user
-  saveCredentialSets(); // Lưu trạng thái
+  saveCredentialSets(); // Lưu trạng thái, đây là hành động GHI ĐÈ trạng thái 'copiedUser' của mục này
   renderCredentialSets(); // Render lại để cập nhật màu sắc
   clickTracker.userClicked = true;
   if (clickTracker.userClicked && clickTracker.passClicked) {
@@ -174,7 +235,7 @@ function copyPassword(index) {
 // Hàm bật/tắt huy hiệu và lưu trạng thái
 function toggleBadge(index) {
     credentialSets[index].hasBadge = !credentialSets[index].hasBadge; // Đảo ngược trạng thái
-    saveCredentialSets(); // Lưu trạng thái
+    saveCredentialSets(); // Lưu trạng thái, đây là hành động GHI ĐÈ trạng thái 'hasBadge' của mục này
     renderCredentialSets(); // Render lại để cập nhật hiển thị icon
 }
 
@@ -216,9 +277,9 @@ function setIndividualStartDate(index) {
 
   // Lưu startDate đã tính toán
   credentialSets[index].startDate = calculatedStartDate.toISOString();
-  saveCredentialSets(); // Lưu lại dữ liệu sau khi cập nhật
+  saveCredentialSets(); // Lưu lại dữ liệu sau khi cập nhật, đây là hành động GHI ĐÈ 'startDate' của mục này
   updateIndividualDayCounters(); // Cập nhật hiển thị ngay lập tức
-  alert(`Đã thiết lập cặp này sẽ bắt đầu từ Ngày ${desiredCycleDay} của chu kỳ.`);
+  // alert(`Đã thiết lập cặp này sẽ bắt đầu từ Ngày ${desiredCycleDay} của chu kỳ.`); // ĐÃ BỎ DÒNG NÀY THEO YÊU CẦU
 }
 
 
@@ -259,6 +320,7 @@ function updateIndividualDayCounters() {
     daysPassed = Math.max(0, daysPassed);
 
     // Áp dụng chu kỳ 28 ngày, đảm bảo chạy từ 1 đến 28
+    // currentCycleDay sẽ tự động quay về 1 sau ngày 28
     const currentCycleDay = (daysPassed % 28) + 1;
 
     dayCounterElement.textContent = `Ngày: ${currentCycleDay}`;
@@ -306,7 +368,6 @@ function renderCredentialSets() {
     setDiv.innerHTML = `
       <div class="info-section-single">
         <div class="cred-pair-single">
-          <span class="index-number">${index + 1}.</span>
           <button onclick="copyUsername(${index})">${cred.username}</button>
           <button onclick="copyPassword(${index})">Copy pass</button>
           <button class="badge-button" onclick="toggleBadge(${index})">
