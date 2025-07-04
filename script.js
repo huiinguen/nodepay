@@ -1,4 +1,4 @@
-// Dữ liệu ban đầu (chưa có startDate và copiedUser), sẽ được cập nhật khi tải hoặc thiết lập
+// Dữ liệu ban đầu (chưa có startDate, copiedUser và hasBadge), sẽ được cập nhật khi tải hoặc thiết lập
 let credentialSets = [
   { username: "huiinguyen", password: "H11223344y@" },
   { username: "huiikk", password: "H112233y@" },
@@ -31,19 +31,25 @@ let credentialSets = [
   { username: "huiik22", password: "H112233y@" },
   { username: "huiik23", password: "H112233y@" },
    { username: "huiik24", password: "H112233y@" },
+   { username: "huiik25", password: "H112233y@" },
+   { username: "huiik26", password: "H112233y@" },
+   { username: "huiik27", password: "H112233y@" },
 ];
 
 // Hàm tải dữ liệu từ localStorage hoặc dùng dữ liệu mặc định
 function loadCredentialSets() {
   const storedData = localStorage.getItem("credentialSetsData");
   if (storedData) {
-    // Nếu có dữ liệu đã lưu, phân tích cú pháp JSON
     credentialSets = JSON.parse(storedData);
-    // Đảm bảo mỗi cặp có thuộc tính copiedUser nếu chưa có (cho các dữ liệu cũ)
-    credentialSets = credentialSets.map(cred => ({ ...cred, copiedUser: cred.hasOwnProperty('copiedUser') ? cred.copiedUser : false }));
+    // Đảm bảo mỗi cặp có thuộc tính copiedUser và hasBadge nếu chưa có
+    credentialSets = credentialSets.map(cred => ({
+        ...cred,
+        copiedUser: cred.hasOwnProperty('copiedUser') ? cred.copiedUser : false,
+        hasBadge: cred.hasOwnProperty('hasBadge') ? cred.hasBadge : false // Thêm thuộc tính hasBadge
+    }));
   } else {
-    // Nếu chưa có, đảm bảo mỗi cặp có startDate ban đầu là null và copiedUser là false
-    credentialSets = credentialSets.map(cred => ({ ...cred, startDate: null, copiedUser: false }));
+    // Nếu chưa có, đảm bảo mỗi cặp có startDate ban đầu là null, copiedUser là false và hasBadge là false
+    credentialSets = credentialSets.map(cred => ({ ...cred, startDate: null, copiedUser: false, hasBadge: false }));
     saveCredentialSets(); // Lưu lại lần đầu
   }
 }
@@ -67,16 +73,17 @@ function handleLogin(event) {
   const password = document.getElementById("password").value;
   const errorMessage = document.getElementById("error-message");
 
-  if (password === "1212@") {
+  if (password === "112233") {
     localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("sessionTimeout", Date.now() + 18 * 60 * 1000); // 18 phút
+    localStorage.setItem("sessionTimeout", Date.now() + 20 * 60 * 1000); // 20 phút
 
     // Khi đăng nhập thành công, reset trạng thái copiedUser cho tất cả các cặp
     credentialSets.forEach(cred => {
         cred.copiedUser = false;
+        // cred.hasBadge = false; // Bỏ dòng này để giữ nguyên trạng thái huy hiệu
     });
     saveCredentialSets(); // Lưu lại trạng thái đã reset
-    
+
     window.location.href = "index.html";
   } else {
     errorMessage.textContent = "Mật khẩu không đúng!";
@@ -87,10 +94,11 @@ function handleLogin(event) {
 function logout() {
   localStorage.removeItem("isLoggedIn");
   localStorage.removeItem("sessionTimeout");
-  
+
   // Khi đăng xuất, reset trạng thái copiedUser cho tất cả các cặp
   credentialSets.forEach(cred => {
       cred.copiedUser = false;
+      // cred.hasBadge = false; // Bỏ dòng này để giữ nguyên trạng thái huy hiệu
   });
   saveCredentialSets(); // Lưu lại trạng thái đã reset
 
@@ -108,7 +116,7 @@ function startCountdown() {
     const timeLeft = timeout - now;
 
     if (timeLeft <= 0) {
-      logout(); // Sẽ reset copiedUser khi gọi logout
+      logout(); // Sẽ reset copiedUser khi gọi logout (không reset hasBadge)
       return;
     }
 
@@ -161,6 +169,13 @@ function copyPassword(index) {
     clickTracker.userClicked = false; // Reset sau khi cuộn
     clickTracker.passClicked = false; // Reset sau khi cuộn
   }
+}
+
+// Hàm bật/tắt huy hiệu và lưu trạng thái
+function toggleBadge(index) {
+    credentialSets[index].hasBadge = !credentialSets[index].hasBadge; // Đảo ngược trạng thái
+    saveCredentialSets(); // Lưu trạng thái
+    renderCredentialSets(); // Render lại để cập nhật hiển thị icon
 }
 
 // Hàm thiết lập ngày khởi đầu cho từng cặp (chỉ nhập ngày trong chu kỳ)
@@ -291,8 +306,12 @@ function renderCredentialSets() {
     setDiv.innerHTML = `
       <div class="info-section-single">
         <div class="cred-pair-single">
-          <span class="index-number">${index + 1}.</span> <button onclick="copyUsername(${index})">${cred.username}</button>
+          <span class="index-number">${index + 1}.</span>
+          <button onclick="copyUsername(${index})">${cred.username}</button>
           <button onclick="copyPassword(${index})">Copy pass</button>
+          <button class="badge-button" onclick="toggleBadge(${index})">
+              <i class="fas fa-crown"></i> </button>
+          <span class="badge-icon" id="badge-icon-${index}" style="${cred.hasBadge ? '' : 'display:none;'}"><i class="fas fa-star"></i></span>
         </div>
         <div class="day-controls">
             <div id="day-counter-${index}" class="day-counter-individual"></div> <button class="set-date-button" onclick="setIndividualStartDate(${index})">Thiết lập ngày</button>
