@@ -3,13 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ứng dụng điểm danh</title>
+  <title>Ứng dụng quản lý</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <div class="container">
-    <div id="credential-list"></div>
+    <h1>Ứng dụng quản lý</h1>
+    <div class="menu-container">
+      <button class="hamburger-menu" id="hamburger-menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="nav-bar hidden" id="nav-bar">
+        <button class="nav-button" id="point-button">Point</button>
+        <button class="nav-button" id="note-button">Note</button>
+      </div>
+    </div>
+    <div id="main-content">
+      </div>
+    <button id="logout-button">Đăng xuất</button>
   </div>
   <div class="scroll-buttons">
     <button id="scroll-up"><i class="fas fa-arrow-up"></i></button>
