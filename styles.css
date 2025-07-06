@@ -19,6 +19,9 @@ body {
   width: 100%;
   max-width: 500px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column; /* Đảm bảo các phần tử con xếp theo cột */
+  align-items: center; /* Căn giữa các phần tử con theo chiều ngang */
 }
 
 h1 {
@@ -27,123 +30,171 @@ h1 {
   color: #333333; /* Màu chữ cho h1 trong container trắng */
 }
 
-/* Định dạng mới cho mỗi cặp riêng lẻ */
+/* Menu Container for Hamburger */
+.menu-container {
+    position: relative; /* Cho phép nav-bar định vị tương đối với nó */
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Đẩy hamburger sang phải */
+    margin-bottom: 1rem;
+}
+
+.hamburger-menu {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.2s;
+    z-index: 1001; /* Đảm bảo nút này nằm trên nav-bar khi nav-bar mở */
+    align-self: flex-end; /* Căn phải nút hamburger */
+}
+
+.hamburger-menu:hover {
+    background-color: #0056b3;
+}
+
+/* Navigation Bar (Initially hidden) */
+.nav-bar {
+    display: flex;
+    flex-direction: column; /* Xếp dọc các nút điều hướng */
+    position: absolute; /* Vị trí tuyệt đối */
+    top: 0; /* Căn trên cùng của menu-container */
+    right: 0; /* Căn phải cùng của menu-container */
+    background-color: #f8f9fa; /* Nền trắng cho menu xổ xuống */
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Nằm trên nội dung nhưng dưới hamburger */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    padding: 10px;
+    min-width: 150px; /* Chiều rộng tối thiểu của menu */
+    box-sizing: border-box;
+}
+
+.nav-bar.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+}
+
+.nav-bar:not(.hidden) { /* Sử dụng :not(.hidden) để đảo ngược trạng thái */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nav-button {
+    width: 100%; /* Các nút full chiều rộng trong menu */
+    padding: 0.6rem 1rem;
+    margin-bottom: 5px; /* Khoảng cách giữa các nút */
+    background-color: transparent; /* Nền trong suốt */
+    color: #495057;
+    border: none; /* Không viền */
+    text-align: left; /* Căn chữ sang trái */
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-button:last-child {
+    margin-bottom: 0;
+}
+
+.nav-button:hover {
+    background-color: #e2e6ea;
+    color: #0056b3;
+}
+
+.nav-button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+
+#main-content {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+/* Định dạng mới cho mỗi cặp riêng lẻ (dùng cho Point View) */
 .credential-set-single {
   margin: 1rem 0; /* Khoảng cách giữa các cặp */
   background-color: #f9f9f9;
   border: 1px solid #e0e0e0;
   border-radius: 6px;
-  padding: 0.8rem 1rem;
-  transition: background-color 0.3s ease; /* Thêm transition để chuyển màu mượt mà */
-  color: #333333; /* Đảm bảo chữ trong mỗi cặp cũng tối màu trên nền sáng của nó */
-}
-
-/* Màu khi đã copy username */
-.credential-set-single.copied-user {
-  background-color: #cccccc; /* Một màu xám đậm hơn một chút so với #e0e0e0 để rõ ràng hơn */
+  padding: 0.8rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* Đảm bảo các phần tử con xếp theo cột */
+  gap: 0.5rem; /* Khoảng cách giữa các phần tử con */
 }
 
 .info-section-single {
   display: flex;
-  justify-content: space-between; /* Đẩy các phần tử ra xa nhau */
+  justify-content: space-between; /* Đẩy các nhóm sang hai bên */
   align-items: center;
   flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
-  gap: 0.8rem; /* Khoảng cách giữa các phần tử */
+  gap: 0.5rem; /* Khoảng cách giữa các item trong section */
 }
 
 .cred-pair-single {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.5rem; /* Khoảng cách giữa các nút */
+  flex-wrap: wrap; /* Cho phép xuống dòng nếu không đủ chỗ */
   align-items: center;
 }
 
-.index-number {
-  font-weight: bold;
-  color: #555555; /* Màu cho số thứ tự */
-}
-
-.divider {
-  width: 100%;
-  border-top: 1px solid #555; /* Màu phân cách đậm hơn để nhìn rõ trên nền tối */
-  margin: 1rem 0;
-}
-
+/* Các nút chung */
 button {
-  padding: 0.4rem 0.8rem;
   background-color: #007bff;
-  color: white; /* Đảm bảo chữ trên nút màu trắng */
+  color: white;
   border: none;
+  padding: 0.6rem 1rem;
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
+  transition: background-color 0.2s;
+  white-space: nowrap; /* Ngăn nút bị ngắt dòng */
 }
 
 button:hover {
   background-color: #0056b3;
 }
 
+/* Nút đăng xuất */
 #logout-button {
-  display: block;
-  margin: 0 auto 1rem auto;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
   background-color: #dc3545;
-  color: white; /* Đảm bảo chữ trên nút đăng xuất màu trắng */
+  margin-top: 1rem; /* Thay đổi thành margin-top */
+  width: auto; /* Điều chỉnh chiều rộng nút đăng xuất */
+  align-self: flex-end; /* Đẩy nút đăng xuất sang phải */
 }
 
 #logout-button:hover {
   background-color: #c82333;
 }
 
+/* Đồng hồ đếm ngược */
 #countdown-timer {
-  font-size: 1rem;
-  color: #555; /* Màu tối hơn để dễ đọc trên nền trắng của container */
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #007bff; /* Màu xanh nổi bật */
+  font-size: 1.1rem;
+}
+
+/* Màu cho cặp đã sao chép user */
+.credential-set-single.copied-user {
+  background-color: #e6ffe6; /* Nền xanh nhạt */
+  border-color: #28a745; /* Viền xanh đậm */
+}
+
+/* Dòng phân chia giữa các cặp */
+.divider {
+  border-top: 1px solid #e0e0e0;
   margin: 1rem 0;
-  font-weight: bold;
-}
-
-#milestone-message {
-  color: green;
-  font-weight: bold;
-  margin-top: 1rem;
-}
-
-/* Login form adjustments */
-#login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-}
-
-#login-form div {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 300px;
-}
-
-#login-form label {
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  color: #333333; /* Màu chữ cho label trong form login */
-}
-
-#login-form input {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  color: #333333; /* Màu chữ trong input */
-  background-color: white; /* Đảm bảo nền input là trắng */
-}
-
-#login-form button {
-  margin-top: 1rem;
-}
-
-#error-message {
-  color: red;
 }
 
 /* Scroll buttons */
@@ -154,153 +205,288 @@ button:hover {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  z-index: 1000;
-  opacity: 0.7;
-  transition: opacity 0.3s;
-}
-
-.scroll-buttons:hover {
-  opacity: 1;
+  z-index: 999; /* Đảm bảo dưới menu hamburger */
 }
 
 .scroll-buttons button {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #007bff;
+  background-color: #6c757d;
+  color: white;
+  border: none;
   border-radius: 50%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s, transform 0.2s;
-  touch-action: manipulation;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s;
 }
 
 .scroll-buttons button:hover {
-  background-color: #0056b3;
-  transform: scale(1.1);
+  background-color: #5a6268;
 }
 
-.scroll-buttons button i {
-  font-size: 1.4rem;
-  color: white; /* Đảm bảo icon màu trắng */
-}
-
-/* CSS cho ô đếm ngày riêng cho TỪNG CẶP */
+/* Thêm định dạng cho phần chứa các điều khiển ngày */
 .day-controls {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Cho phép xuống dòng nếu không đủ chỗ */
 }
 
-.day-counter-individual {
-  font-size: 0.85rem;
-  font-weight: bold;
-  color: #0056b3; /* Màu sắc nổi bật hơn trên nền sáng của cặp */
-  background-color: #e6f2ff; /* Nền nhẹ nhàng */
-  padding: 0.3rem 0.6rem;
+/* Định dạng cho nút hiển thị/thiết lập ngày duy nhất */
+.day-display-button {
+  background-color: #28a745; /* Màu xanh lá cây */
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
   border-radius: 4px;
-  min-width: 60px;
-  text-align: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+  white-space: nowrap;
 }
 
-/* Kiểu cho ngày quan trọng */
-.important-day {
-  background-color: #ffcc00; /* Màu vàng nổi bật */
-  color: #333; /* Màu chữ tối trên nền vàng */
-  border: 1px solid #ffaa00;
-  animation: pulse 1.5s infinite;
+.day-display-button:hover {
+  background-color: #218838; /* Màu xanh lá đậm hơn khi hover */
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 rgba(255, 204, 0, 0.7);
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(255, 204, 0, 0.9);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 rgba(255, 204, 0, 0.7);
-  }
+/* Màu sắc đặc biệt cho các ngày quan trọng (7, 14, 21, 28) */
+.day-display-button.important-day {
+  background-color: #dc3545; /* Màu đỏ */
 }
 
-.set-date-button {
-    background-color: #28a745;
-    padding: 0.3rem 0.7rem;
-    font-size: 0.8rem;
-    color: white; /* Đảm bảo chữ trên nút màu trắng */
+.day-display-button.important-day:hover {
+  background-color: #c82333;
 }
 
-.set-date-button:hover {
-    background-color: #218838;
+/* Định dạng cho phần ghi chú */
+.notes-section {
+  display: flex;
+  flex-direction: column; /* Xếp chồng các dòng ghi chú */
+  gap: 0.3rem; /* Khoảng cách giữa các dòng ghi chú */
+  margin-top: 0.5rem; /* Khoảng cách từ phần trên */
+  text-align: left; /* Căn trái văn bản ghi chú */
+  font-size: 0.85rem;
+  color: #555; /* Màu chữ xám cho ghi chú */
+  padding-top: 0.5rem;
+  border-top: 1px dashed #e0e0e0; /* Đường phân cách mảnh */
+}
+
+.note-line {
+  display: block; /* Đảm bảo mỗi ghi chú là một dòng riêng */
+  white-space: pre-wrap; /* Giữ các ngắt dòng và khoảng trắng */
+}
+
+/* Styles for Note View Categories (Collapsible Menu) */
+.category-section {
+    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    text-align: left;
+    overflow: hidden; /* Quan trọng để animation maxHeight hoạt động */
+}
+
+.category-section h2 {
+    background-color: #007bff;
+    color: white;
+    padding: 0.8rem 1rem;
+    margin: 0; /* Xóa margin mặc định của h2 */
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+    border-radius: 8px 8px 0 0; /* Bo tròn góc trên */
+}
+
+.category-section h2:hover {
+    background-color: #0056b3;
+}
+
+.category-section h2 .toggle-icon {
+    transition: transform 0.3s ease;
+}
+
+.category-section h2.active .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.collapsible-content {
+    background-color: white; /* Nền trắng cho nội dung sổ xuống */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 0; /* Ban đầu ẩn */
+    overflow: hidden; /* Ẩn nội dung tràn */
+    transition: max-height 0.3s ease-out; /* Animation cho việc sổ xuống */
+}
+
+.collapsible-content li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem; /* Padding bên trong list items */
+    border-bottom: 1px dashed #ced4da;
+    font-size: 0.95rem;
+    color: #333;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.collapsible-content li:last-child {
+    border-bottom: none;
+}
+
+.collapsible-content li button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    background-color: #6c757d;
+}
+
+.collapsible-content li button:hover {
+    background-color: #5a6268;
+}
+
+/* --- Styles for Login Form (login.html) --- */
+#login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Khoảng cách giữa các phần tử trong form */
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+#login-form div {
+  text-align: left;
+}
+
+#login-form label {
+  display: block; /* Đặt label trên một dòng riêng */
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #333333; /* Màu chữ cho label trong form */
+}
+
+#login-form input[type="password"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-sizing: border-box; /* Đảm bảo padding không làm tăng width */
+  font-size: 1rem;
+}
+
+#login-form button[type="submit"] {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+#error-message {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  font-size: 0.9rem;
 }
 
 /* Responsive cho thiết bị nhỏ */
 @media (max-width: 600px) {
   .container {
-    padding: 0.8rem;
-    max-width: 100%;
+    padding: 1rem;
   }
 
   h1 {
-    font-size: 1.2rem;
-  }
-
-  .info-section-single {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .cred-pair-single {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .day-controls {
-      width: 100%;
-      justify-content: space-between;
+    font-size: 1.3rem;
   }
 
   button {
     font-size: 0.8rem;
-    padding: 0.3rem 0.6rem;
+    padding: 0.5rem 0.8rem;
   }
 
-  #login-form input {
-    font-size: 0.9rem;
+  .info-section-single, .cred-pair-single, .day-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
   }
 
-  #logout-button {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
+  .cred-pair-single button {
+      width: 100%; /* Nút co giãn đầy đủ chiều rộng */
+      box-sizing: border-box;
   }
 
-  #countdown-timer {
-    font-size: 0.9rem;
+  .day-display-button {
+      width: 100%;
+      box-sizing: border-box;
   }
 
-  .day-counter-individual {
-    font-size: 0.8rem;
-    padding: 0.2rem 0.5rem;
-  }
-
-  .set-date-button {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.6rem;
+  .scroll-buttons {
+    flex-direction: row;
+    width: calc(100% - 40px);
+    justify-content: space-around;
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
   }
 
   .scroll-buttons button {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
   }
 
-  .scroll-buttons button i {
-    font-size: 1.2rem;
+  /* Hamburger menu and nav-bar responsiveness */
+  .menu-container {
+      justify-content: flex-start; /* Dịch hamburger sang trái */
+  }
+
+  .nav-bar {
+      top: 50px; /* Dịch xuống dưới nút hamburger */
+      right: auto;
+      left: 10px; /* Căn trái */
+      min-width: 120px;
+      padding: 5px;
+  }
+  
+  #logout-button {
+      width: 100%;
+      box-sizing: border-box;
+      align-self: center; /* Căn giữa nút đăng xuất */
+  }
+
+  .category-section h2 {
+      font-size: 1rem; /* Giảm cỡ chữ tiêu đề category */
+      padding: 0.6rem 0.8rem;
+  }
+
+  .collapsible-content li {
+      flex-direction: column; /* Xếp cột các mục trong category list */
+      align-items: flex-start;
+      padding: 0.4rem 0.8rem;
+  }
+
+  .collapsible-content li button {
+      width: 100%;
+      box-sizing: border-box;
+  }
+
+  /* Login Form Responsive */
+  #login-form {
+    gap: 0.8rem;
+  }
+
+  #login-form input[type="password"] {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  #login-form button[type="submit"] {
+    padding: 0.7rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -321,48 +507,4 @@ button:hover {
   button {
     font-size: 0.85rem;
   }
-}/* Định dạng nút huy hiệu */
-.badge-button {
-  background-color: #ffc107; /* Màu vàng cam */
-  color: #333; /* Màu chữ/icon đen */
-  border: none;
-  padding: 0.4rem 0.6rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.badge-button:hover {
-  background-color: #e0a800; /* Màu vàng đậm hơn khi hover */
-}
-
-.badge-button i {
-  color: #333; /* Đảm bảo icon trong nút có màu đen */
-}
-
-/* Định dạng icon huy hiệu sẽ hiển thị */
-.badge-icon {
-  margin-left: 0.5rem;
-  font-size: 1.2rem;
-  color: #28a745; /* Màu xanh lá cây cho icon nổi bật */
-  vertical-align: middle; /* Căn chỉnh icon với văn bản */
-  display: flex; /* Sử dụng flexbox để căn giữa icon */
-  align-items: center;
-  justify-content: center;
-}
-
-.badge-icon i {
-    /* Không cần thêm màu ở đây nếu đã định nghĩa ở .badge-icon */
-}
-
-
-/* Điều chỉnh lại khoảng cách giữa các button trong cred-pair-single nếu cần */
-.cred-pair-single {
-  display: flex;
-  gap: 0.5rem; /* Giữ khoảng cách giữa các nút */
-  align-items: center;
-  flex-wrap: wrap; /* Đảm bảo các nút xuống dòng nếu không đủ chỗ */
 }
