@@ -1,79 +1,84 @@
-// Dữ liệu ban đầu (chưa có startDate, copiedUser và hasBadge), sẽ được cập nhật khi tải hoặc thiết lập
+// Dữ liệu ban đầu (thêm thuộc tính 'category' dưới dạng MẢNG)
 let credentialSets = [
-  { username: "huiinguyen", password: "H11223344y@" },
-  { username: "huiikk", password: "H112233y@" },
-  { username: "huiikkk", password: "H112233y@" },
-  { username: "huiitran", password: "H112233y@" },
-  { username: "huiivan", password: "H112233y@" },
-  { username: "huiiha", password: "H112233y@" },
-  { username: "huiiheo", password: "H112233y@" },
-  { username: "huiimeo", password: "H112233y@" },
-  { username: "hdddd", password: "H112233y@" },
-  { username: "huiik3", password: "H112233y@" },
-  { username: "huiik4", password: "H112233y@" },
-  { username: "huiik5", password: "H112233y@" },
-  { username: "huiik6", password: "H112233y@" },
-  { username: "huiik7", password: "H112233y@" },
-  { username: "huiik8", password: "H112233y@" },
-  { username: "huiik9", password: "H112233y@" },
-  { username: "huiik10", password: "H112233y@" },
-  { username: "huiik11", password: "H112233y@" },
-  { username: "huiik12", password: "H112233y@" },
-  { username: "huiik13", password: "H112233y@" },
-  { username: "huiik14", password: "H112233y@" },
-  { username: "huiik15", password: "H112233y@" },
-  { username: "huiik16", password: "H112233y@" },
-  { username: "huiik17", password: "H112233y@" },
-  { username: "huiik18", password: "H112233y@" },
-  { username: "huiik19", password: "H112233y@" },
-  { username: "huiik20", password: "H112233y@" },
-  { username: "huiik21", password: "H112233y@" },
-  { username: "huiik22", password: "H112233y@" },
-  { username: "huiik23", password: "H112233y@" },
-   { username: "huiik24", password: "H112233y@" },
-   { username: "huiik25", password: "H112233y@" },
-   { username: "huiik26", password: "H112233y@" },
-   { username: "huiik27", password: "H112233y@" },
+  { username: "huiinguyen", password: "H11223344y@", category: ["hoan_thanh_ca"] },
+  { username: "huiikk", password: "H112233y@", category: ["hoan_thanh_ca"] }, // Ví dụ nhiều đặc tính
+  { username: "huiikkk", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiitran", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiivan", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiiha", password: "H112233y@", category: ["signal"] },
+  { username: "huiiheo", password: "H112233y@", category: ["hoan_thanh_ca"] }, // Ví dụ nhiều đặc tính
+  { username: "huiimeo", password: "H112233y@", category:["hoan_thanh_ca"]},
+  { username: "hdddd", password: "H112233y@", category: ["signal"] },
+  { username: "huiik3", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik4", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik5", password: "H112233y@", category: ["hoan_thanh_ca","signal" ] },
+  { username: "huiik6", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik7", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik8", password: "H112233y@", category: ["hoan_thanh_ca","signal"] },
+  { username: "huiik9", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik10", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik11", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik12", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik13", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik14", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik15", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik16", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik17", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik18", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik19", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik20", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik21", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik22", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik23", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik24", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik25", password: "H112233y@", category: ["chua_ket_noi_vi"] },
+  { username: "huiik26", password: "H112233y@", category: ["chua_ket_noi_vi"] },
+  { username: "huiik27", password: "H112233y@", category: ["chua_ket_noi_vi"] },
+  { username: "huiik28", password: "H112233y@", category: ["chua_ket_noi_vi"] },
+  { username: "huiik29", password: "H112233y@", category: ["chua_ket_noi_vi"] },
+  { username: "huiik30", password: "H112233y@", category: ["chua_ket_noi_vi"] },
 ];
 
 // Hàm tải dữ liệu từ localStorage hoặc dùng dữ liệu mặc định
-// Đã được cập nhật để hợp nhất dữ liệu từ localStorage với danh sách mặc định trong code
 function loadCredentialSets() {
-  const defaultCredentialSets = [ // Lưu trữ danh sách mặc định để hợp nhất
-    { username: "huiinguyen", password: "H11223344y@" },
-    { username: "huiikk", password: "H112233y@" },
-    { username: "huiikkk", password: "H112233y@" },
-    { username: "huiitran", password: "H112233y@" },
-    { username: "huiivan", password: "H112233y@" },
-    { username: "huiiha", password: "H112233y@" },
-    { username: "huiiheo", password: "H112233y@" },
-    { username: "huiimeo", password: "H112233y@" },
-    { username: "hdddd", password: "H112233y@" },
-    { username: "huiik3", password: "H112233y@" },
-    { username: "huiik4", password: "H112233y@" },
-    { username: "huiik5", password: "H112233y@" },
-    { username: "huiik6", password: "H112233y@" },
-    { username: "huiik7", password: "H112233y@" },
-    { username: "huiik8", password: "H112233y@" },
-    { username: "huiik9", password: "H112233y@" },
-    { username: "huiik10", password: "H112233y@" },
-    { username: "huiik11", password: "H112233y@" },
-    { username: "huiik12", password: "H112233y@" },
-    { username: "huiik13", password: "H112233y@" },
-    { username: "huiik14", password: "H112233y@" },
-    { username: "huiik15", password: "H112233y@" },
-    { username: "huiik16", password: "H112233y@" },
-    { username: "huiik17", password: "H112233y@" },
-    { username: "huiik18", password: "H112233y@" },
-    { username: "huiik19", password: "H112233y@" },
-    { username: "huiik20", password: "H112233y@" },
-    { username: "huiik21", password: "H112233y@" },
-    { username: "huiik22", password: "H112233y@" },
-    { username: "huiik23", password: "H112233y@" },
-    { username: "huiik24", password: "H112233y@" },
-    { username: "huiik25", password: "H112233y@" },
-    { username: "huiik26", password: "H112233y@" },
-    { username: "huiik27", password: "H112233y@" },
+  const defaultCredentialSets = [
+  { username: "huiinguyen", password: "H11223344y@", category: ["hoan_thanh_ca"] },
+  { username: "huiikk", password: "H112233y@", category: ["hoan_thanh_ca"] }, // Ví dụ nhiều đặc tính
+  { username: "huiikkk", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiitran", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiivan", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiiha", password: "H112233y@", category: ["signal"] },
+  { username: "huiiheo", password: "H112233y@", category: ["hoan_thanh_ca"] }, // Ví dụ nhiều đặc tính
+  { username: "huiimeo", password: "H112233y@", category:["hoan_thanh_ca"]},
+  { username: "hdddd", password: "H112233y@", category: ["signal"] },
+  { username: "huiik3", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik4", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik5", password: "H112233y@", category: ["hoan_thanh_ca","signal" ] },
+  { username: "huiik6", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik7", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik8", password: "H112233y@", category: ["hoan_thanh_ca","signal"] },
+  { username: "huiik9", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik10", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik11", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik12", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik13", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik14", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik15", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik16", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik17", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik18", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik19", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik20", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik21", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik22", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik23", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik24", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik25", password: "H112233y@", category: ["chua_ket_noi_vi"] },
+  { username: "huiik26", password: "H112233y@", category: ["chua_ket_noi_vi"] },
+  { username: "huiik27", password: "H112233y@", category: ["chua_ket_noi_vi"] },
+  { username: "huiik28", password: "H112233y@", category: ["chua_ket_noi_vi"] },
+  { username: "huiik29", password: "H112233y@", category: ["chua_ket_noi_vi"] },
+  { username: "huiik30", password: "H112233y@", category: ["chua_ket_noi_vi"] },
   ];
 
   const storedData = localStorage.getItem("credentialSetsData");
@@ -83,50 +88,53 @@ function loadCredentialSets() {
     loadedCredentialSets = JSON.parse(storedData);
   }
 
-  // Hợp nhất dữ liệu: Bắt đầu với danh sách mặc định
   let mergedCredentialSets = [...defaultCredentialSets];
 
-  // Cập nhật các thuộc tính từ dữ liệu đã lưu nếu có
   mergedCredentialSets = mergedCredentialSets.map(defaultCred => {
     const foundInLoaded = loadedCredentialSets.find(loadedCred => loadedCred.username === defaultCred.username);
     if (foundInLoaded) {
-      // Nếu tìm thấy trong dữ liệu đã lưu, sử dụng các thuộc tính đã lưu
+      // Ensure category is always an array
+      let categoryArray = Array.isArray(foundInLoaded.category) ? foundInLoaded.category : [foundInLoaded.category].filter(Boolean);
+      
+      // Merge categories: take default if loaded category is empty, otherwise use loaded
+      if (categoryArray.length === 0 && Array.isArray(defaultCred.category)) {
+          categoryArray = defaultCred.category;
+      } else if (!Array.isArray(categoryArray) && typeof categoryArray === 'string') {
+          // If for some reason it's a string, convert it
+          categoryArray = [categoryArray];
+      }
+
       return {
-        ...defaultCred, // Giữ username, password từ mặc định
+        ...defaultCred,
         startDate: foundInLoaded.startDate || null,
         copiedUser: foundInLoaded.hasOwnProperty('copiedUser') ? foundInLoaded.copiedUser : false,
-        hasBadge: foundInLoaded.hasOwnProperty('hasBadge') ? foundInLoaded.hasBadge : false
+        category: categoryArray, 
       };
     } else {
-      // Nếu không tìm thấy, khởi tạo với các giá trị mặc định
       return {
         ...defaultCred,
         startDate: null,
         copiedUser: false,
-        hasBadge: false
+        // Ensure default category is an array
+        category: Array.isArray(defaultCred.category) ? defaultCred.category : [defaultCred.category].filter(Boolean),
       };
     }
   });
 
   credentialSets = mergedCredentialSets;
-  saveCredentialSets(); // Lưu lại dữ liệu đã hợp nhất vào localStorage
+  saveCredentialSets();
 }
 
-// Hàm lưu dữ liệu vào localStorage
-// Đây là bước GHI ĐÈ dữ liệu. Mọi thay đổi trong 'credentialSets' sẽ được lưu lại toàn bộ.
 function saveCredentialSets() {
   localStorage.setItem("credentialSetsData", JSON.stringify(credentialSets));
 }
 
-// Gọi hàm tải dữ liệu khi khởi động script
 loadCredentialSets();
 
-// Hàm kiểm tra trạng thái đăng nhập
 function isLoggedIn() {
   return localStorage.getItem("isLoggedIn") === "true";
 }
 
-// Hàm xử lý đăng nhập
 function handleLogin(event) {
   event.preventDefault();
   const password = document.getElementById("password").value;
@@ -134,15 +142,12 @@ function handleLogin(event) {
 
   if (password === "112233") {
     localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("sessionTimeout", Date.now() + 20 * 60 * 1000); // 20 phút
+    localStorage.setItem("sessionTimeout", Date.now() + 20 * 60 * 1000);
 
-    // Khi đăng nhập thành công, reset trạng thái copiedUser cho tất cả các cặp
-    // Đây là một dạng cập nhật ghi đè cho thuộc tính 'copiedUser'
     credentialSets.forEach(cred => {
-        cred.copiedUser = false;
-        // cred.hasBadge = false; // Bỏ dòng này để giữ nguyên trạng thái huy hiệu (theo yêu cầu của bạn)
+      cred.copiedUser = false;
     });
-    saveCredentialSets(); // Lưu lại trạng thái đã reset
+    saveCredentialSets();
 
     window.location.href = "index.html";
   } else {
@@ -150,23 +155,18 @@ function handleLogin(event) {
   }
 }
 
-// Hàm đăng xuất
 function logout() {
   localStorage.removeItem("isLoggedIn");
   localStorage.removeItem("sessionTimeout");
 
-  // Khi đăng xuất, reset trạng thái copiedUser cho tất cả các cặp
-  // Đây cũng là một dạng cập nhật ghi đè cho thuộc tính 'copiedUser'
   credentialSets.forEach(cred => {
-      cred.copiedUser = false;
-      // cred.hasBadge = false; // Bỏ dòng này để giữ nguyên trạng thái huy hiệu (theo yêu cầu của bạn)
+    cred.copiedUser = false;
   });
-  saveCredentialSets(); // Lưu lại trạng thái đã reset
+  saveCredentialSets();
 
   window.location.href = "login.html";
 }
 
-// Hàm hiển thị đồng hồ đếm ngược
 function startCountdown() {
   const timerDisplay = document.getElementById("countdown-timer");
   if (!timerDisplay) return;
@@ -177,7 +177,7 @@ function startCountdown() {
     const timeLeft = timeout - now;
 
     if (timeLeft <= 0) {
-      logout(); // Sẽ reset copiedUser khi gọi logout (không reset hasBadge)
+      logout();
       return;
     }
 
@@ -192,64 +192,51 @@ function startCountdown() {
   setInterval(updateTimer, 1000);
 }
 
-// Biến lưu trữ trạng thái nhấp user và pass
 let clickTracker = { userClicked: false, passClicked: false };
 
-// Hàm tự động cuộn xuống khi đã nhấp cả user và pass
 function autoScrollDown() {
   const currentPosition = window.scrollY;
   const viewportHeight = window.innerHeight;
   const documentHeight = document.body.scrollHeight;
 
-  // Chỉ cuộn nếu chưa ở gần cuối trang
   if (currentPosition + viewportHeight < documentHeight - 50) {
-    window.scrollBy({ top: 100, behavior: "smooth" }); // Cuộn xuống 100px
+    window.scrollBy({ top: 100, behavior: "smooth" });
   }
 }
 
-// Hàm sao chép tên người dùng
 function copyUsername(index) {
   navigator.clipboard.writeText(credentialSets[index].username);
-  credentialSets[index].copiedUser = true; // Đánh dấu đã sao chép user
-  saveCredentialSets(); // Lưu trạng thái, đây là hành động GHI ĐÈ trạng thái 'copiedUser' của mục này
-  renderCredentialSets(); // Render lại để cập nhật màu sắc
+  credentialSets[index].copiedUser = true;
+  saveCredentialSets();
+  renderPointView(); // Re-render the current view
   clickTracker.userClicked = true;
   if (clickTracker.userClicked && clickTracker.passClicked) {
     autoScrollDown();
-    clickTracker.userClicked = false; // Reset sau khi cuộn
-    clickTracker.passClicked = false; // Reset sau khi cuộn
+    clickTracker.userClicked = false;
+    clickTracker.passClicked = false;
   }
 }
 
-// Hàm sao chép mật khẩu
 function copyPassword(index) {
   navigator.clipboard.writeText(credentialSets[index].password);
   clickTracker.passClicked = true;
   if (clickTracker.userClicked && clickTracker.passClicked) {
     autoScrollDown();
-    clickTracker.userClicked = false; // Reset sau khi cuộn
-    clickTracker.passClicked = false; // Reset sau khi cuộn
+    clickTracker.userClicked = false;
+    clickTracker.passClicked = false;
   }
 }
 
-// Hàm bật/tắt huy hiệu và lưu trạng thái
-function toggleBadge(index) {
-    credentialSets[index].hasBadge = !credentialSets[index].hasBadge; // Đảo ngược trạng thái
-    saveCredentialSets(); // Lưu trạng thái, đây là hành động GHI ĐÈ trạng thái 'hasBadge' của mục này
-    renderCredentialSets(); // Render lại để cập nhật hiển thị icon
-}
-
-// Hàm thiết lập ngày khởi đầu cho từng cặp (chỉ nhập ngày trong chu kỳ)
 function setIndividualStartDate(index) {
   const now = new Date();
   const currentYear = now.getFullYear();
-  const currentMonth = now.getMonth(); // 0-11
+  const currentMonth = now.getMonth();
   const currentDay = now.getDate();
 
   let desiredCycleDayInput = prompt("Nhập ngày bạn muốn hiển thị trong chu kỳ 28 ngày (1-28):");
 
   if (desiredCycleDayInput === null || desiredCycleDayInput.trim() === "") {
-    return; // Người dùng hủy hoặc nhập rỗng
+    return;
   }
 
   let desiredCycleDay = parseInt(desiredCycleDayInput);
@@ -259,41 +246,33 @@ function setIndividualStartDate(index) {
     return;
   }
 
-  // Tính toán effectiveToday (ngày hiện tại điều chỉnh theo mốc 7 AM)
   let effectiveToday = new Date(currentYear, currentMonth, currentDay, 7, 0, 0);
   if (now.getHours() < 7) {
-    effectiveToday.setDate(effectiveToday.getDate() - 1); // Nếu trước 7h sáng, tính từ ngày hôm qua
+    effectiveToday.setDate(effectiveToday.getDate() - 1);
   }
 
-  // Tính số ngày cần trừ đi từ effectiveToday để đạt được desiredCycleDay
-  // Ví dụ: desiredCycleDay = 1 (ngày đầu tiên của chu kỳ) -> trừ 0 ngày
-  // desiredCycleDay = 7 (ngày thứ 7 của chu kỳ) -> trừ 6 ngày
   const daysToSubtract = desiredCycleDay - 1;
 
-  // Tính toán startDate thực tế của cặp user/pass này
   let calculatedStartDate = new Date(effectiveToday);
   calculatedStartDate.setDate(effectiveToday.getDate() - daysToSubtract);
-  calculatedStartDate.setHours(7, 0, 0, 0); // Đảm bảo mốc thời gian là 7 AM
+  calculatedStartDate.setHours(7, 0, 0, 0);
 
-  // Lưu startDate đã tính toán
   credentialSets[index].startDate = calculatedStartDate.toISOString();
-  saveCredentialSets(); // Lưu lại dữ liệu sau khi cập nhật, đây là hành động GHI ĐÈ 'startDate' của mục này
-  updateIndividualDayCounters(); // Cập nhật hiển thị ngay lập tức
-  // alert(`Đã thiết lập cặp này sẽ bắt đầu từ Ngày ${desiredCycleDay} của chu kỳ.`); // ĐÃ BỎ DÒNG NÀY THEO YÊU CẦU
+  saveCredentialSets();
+  updateIndividualDayCounters();
 }
 
-
-// Hàm cập nhật bộ đếm ngày cho TỪNG CẶP
 function updateIndividualDayCounters() {
-  const now = new Date(); // Thời điểm hiện tại
+  const now = new Date();
 
   credentialSets.forEach((cred, index) => {
-    const dayCounterElement = document.getElementById(`day-counter-${index}`);
-    if (!dayCounterElement) return; // Đảm bảo phần tử tồn tại
+    const dayDisplayElement = document.getElementById(`day-display-${index}`);
+    if (!dayDisplayElement) return;
 
     if (!cred.startDate) {
-      dayCounterElement.textContent = "Chưa thiết lập ngày";
-      dayCounterElement.className = 'day-counter-individual'; // Reset class
+      dayDisplayElement.textContent = "Thiết lập ngày";
+      dayDisplayElement.className = 'day-display-button';
+      dayDisplayElement.onclick = () => setIndividualStartDate(index);
       return;
     }
 
@@ -301,68 +280,47 @@ function updateIndividualDayCounters() {
 
     let daysPassed;
 
-    // Tạo một đối tượng Date đại diện cho 7 AM của ngày hiện tại
     const now7AM = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 7, 0, 0);
 
-    // Logic để tính số ngày đã trôi qua kể từ startDate đến thời điểm hiện tại,
-    // với mốc reset ngày mới là 7 AM.
-    // Nếu bây giờ là trước 7 AM, chúng ta tính ngày dựa trên ngày hôm qua.
     if (now.getHours() < 7) {
-      // Nếu bây giờ là trước 7 AM, lấy ngày của hôm qua (lúc 7 AM) để tính toán
       const yesterday7AM = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1, 7, 0, 0);
       daysPassed = Math.floor((yesterday7AM.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
     } else {
-      // Nếu bây giờ là sau hoặc bằng 7 AM, lấy ngày hiện tại (lúc 7 AM) để tính toán
       daysPassed = Math.floor((now7AM.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
     }
 
-    // Đảm bảo số ngày không âm (nếu startDate là trong tương lai so với mốc tính)
     daysPassed = Math.max(0, daysPassed);
 
-    // Áp dụng chu kỳ 28 ngày, đảm bảo chạy từ 1 đến 28
-    // currentCycleDay sẽ tự động quay về 1 sau ngày 28
     const currentCycleDay = (daysPassed % 28) + 1;
 
-    dayCounterElement.textContent = `Ngày: ${currentCycleDay}`;
+    dayDisplayElement.textContent = `Ngày: ${currentCycleDay}`;
 
-    // Xóa các class cũ và thêm class mới
-    dayCounterElement.className = 'day-counter-individual'; // Reset về class cơ bản
+    dayDisplayElement.className = 'day-display-button';
     if (currentCycleDay === 7 || currentCycleDay === 14 || currentCycleDay === 21 || currentCycleDay === 28) {
-      dayCounterElement.classList.add('important-day');
+      dayDisplayElement.classList.add('important-day');
     }
+    dayDisplayElement.onclick = () => setIndividualStartDate(index);
   });
 }
 
+// Hàm hiển thị danh sách thông tin đăng nhập (View "Point")
+function renderPointView() {
+  const mainContent = document.getElementById("main-content");
+  if (!mainContent) return;
 
-// Hàm hiển thị danh sách thông tin đăng nhập
-function renderCredentialSets() {
-  if (!isLoggedIn()) {
-    window.location.href = "login.html";
-    return;
-  }
-
-  const credentialList = document.getElementById("credential-list");
-  credentialList.innerHTML = ""; // Xóa nội dung cũ
-
-  // Thêm nút đăng xuất
-  const logoutButton = document.createElement("button");
-  logoutButton.id = "logout-button";
-  logoutButton.textContent = "Đăng xuất";
-  logoutButton.onclick = logout;
-  credentialList.appendChild(logoutButton);
+  mainContent.innerHTML = ""; // Xóa nội dung cũ
 
   // Thêm đồng hồ đếm ngược
   const timerDisplay = document.createElement("div");
   timerDisplay.id = "countdown-timer";
   timerDisplay.textContent = "Thời gian còn lại: 09:00";
-  credentialList.appendChild(timerDisplay);
+  mainContent.appendChild(timerDisplay);
 
-  // Hiển thị MỖI cặp user/pass trên một hàng
   credentialSets.forEach((cred, index) => {
     const setDiv = document.createElement("div");
-    setDiv.className = "credential-set-single"; // Class cho từng cặp
+    setDiv.className = "credential-set-single";
     if (cred.copiedUser) {
-      setDiv.classList.add('copied-user'); // Thêm class nếu user đã được copy
+      setDiv.classList.add('copied-user');
     }
 
     setDiv.innerHTML = `
@@ -370,58 +328,198 @@ function renderCredentialSets() {
         <div class="cred-pair-single">
           <button onclick="copyUsername(${index})">${cred.username}</button>
           <button onclick="copyPassword(${index})">Copy pass</button>
-          <button class="badge-button" onclick="toggleBadge(${index})">
-              <i class="fas fa-crown"></i> </button>
-          <span class="badge-icon" id="badge-icon-${index}" style="${cred.hasBadge ? '' : 'display:none;'}"><i class="fas fa-star"></i></span>
         </div>
         <div class="day-controls">
-            <div id="day-counter-${index}" class="day-counter-individual"></div> <button class="set-date-button" onclick="setIndividualStartDate(${index})">Thiết lập ngày</button>
+            <button id="day-display-${index}" class="day-display-button"></button>
         </div>
       </div>
       ${index < credentialSets.length - 1 ? '<div class="divider"></div>' : ""}
     `;
-
-    credentialList.appendChild(setDiv);
+    mainContent.appendChild(setDiv);
   });
 
-  // Thêm sự kiện cho nút cuộn
-  const scrollUpBtn = document.getElementById("scroll-up");
-  const scrollDownBtn = document.getElementById("scroll-down");
-
-  if (scrollUpBtn) {
-    scrollUpBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-    scrollUpBtn.addEventListener("touchstart", (e) => {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
-
-  if (scrollDownBtn) {
-    scrollDownBtn.addEventListener("click", () => {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-    });
-    scrollDownBtn.addEventListener("touchstart", (e) => {
-      e.preventDefault();
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-    });
-  }
-
-  // Khởi động đồng hồ đếm ngược
-  startCountdown();
-  // Khởi động bộ đếm ngày cho TỪNG CẶP
-  updateIndividualDayCounters(); // Gọi lần đầu để hiển thị ngay
-  // Kiểm tra mỗi phút để cập nhật ngày (đảm bảo cập nhật khi chuyển sang ngày mới lúc 7h sáng)
-  setInterval(updateIndividualDayCounters, 60 * 1000);
+  updateIndividualDayCounters(); // Cập nhật bộ đếm ngày cho các mục mới được render
+  startCountdown(); // Khởi động lại đồng hồ đếm ngược cho view này
 }
 
-// Thêm sự kiện cho form đăng nhập
+// Hàm hiển thị danh sách thông tin đăng nhập theo loại (View "Note")
+function renderNoteView() {
+  const mainContent = document.getElementById("main-content");
+  if (!mainContent) return;
+
+  mainContent.innerHTML = ""; // Xóa nội dung cũ
+
+  const categories = {
+    "signal": "Signal",
+    "chua_ket_noi_vi": "Chưa kết nối ví",
+    "hoan_thanh_ca": "Hoàn thành cả",
+  };
+
+  // Group credentials by category
+  const categorizedCredentials = {};
+  for (const key in categories) {
+    categorizedCredentials[key] = [];
+  }
+
+  credentialSets.forEach(cred => {
+    // Ensure cred.category is an array before iterating
+    const credCategories = Array.isArray(cred.category) ? cred.category : [cred.category].filter(Boolean);
+    
+    credCategories.forEach(cat => {
+        if (categorizedCredentials[cat]) {
+            categorizedCredentials[cat].push(cred);
+        }
+    });
+  });
+
+
+  for (const categoryKey in categories) {
+    const categoryTitle = categories[categoryKey];
+    const categoryDiv = document.createElement("div");
+    categoryDiv.className = "category-section";
+
+    const titleElement = document.createElement("h2");
+    titleElement.innerHTML = `${categoryTitle} <i class="fas fa-chevron-down toggle-icon"></i>`;
+    titleElement.onclick = function() {
+      this.classList.toggle('active');
+      const content = this.nextElementSibling;
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+      } else {
+        // Set max-height to scrollHeight to allow smooth transition
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    };
+    categoryDiv.appendChild(titleElement);
+
+    const ul = document.createElement("ul");
+    ul.className = "category-list collapsible-content";
+
+    const filteredCredentials = categorizedCredentials[categoryKey];
+
+    if (filteredCredentials.length === 0) {
+      const li = document.createElement("li");
+      li.textContent = "Không có dữ liệu trong mục này.";
+      ul.appendChild(li);
+    } else {
+      filteredCredentials.forEach((cred) => { // No need for index here as it's not used
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span>${cred.username}</span>
+          <button onclick="copyUsernameForNote('${cred.username}')">Copy User</button>
+          <button onclick="copyPasswordForNote('${cred.password}')">Copy Pass</button>
+        `;
+        ul.appendChild(li);
+      });
+    }
+    categoryDiv.appendChild(ul);
+    mainContent.appendChild(categoryDiv);
+  }
+}
+
+// Hàm sao chép username cho view Note (để không ảnh hưởng đến trạng thái copiedUser của view Point)
+function copyUsernameForNote(username) {
+  navigator.clipboard.writeText(username);
+  // alert("Đã sao chép Username: " + username); // Bỏ thông báo alert
+}
+
+// Hàm sao chép password cho view Note
+function copyPasswordForNote(password) {
+  navigator.clipboard.writeText(password);
+  // alert("Đã sao chép Password."); // Bỏ thông báo alert
+}
+
+
+// Hàm chuyển đổi giữa các view
+function showView(viewName) {
+  const navButtons = document.querySelectorAll(".nav-button");
+  navButtons.forEach(button => button.classList.remove("active"));
+  document.getElementById(`${viewName}-button`).classList.add("active");
+
+  // Đóng menu hamburger sau khi chọn view
+  const navBar = document.getElementById("nav-bar");
+  navBar.classList.add("hidden");
+
+  if (viewName === "point") {
+    renderPointView();
+    const scrollButtons = document.querySelector('.scroll-buttons');
+    if (scrollButtons) scrollButtons.style.display = 'flex'; // Hiện nút cuộn
+  } else if (viewName === "note") {
+    renderNoteView();
+    const scrollButtons = document.querySelector('.scroll-buttons');
+    if (scrollButtons) scrollButtons.style.display = 'none'; // Ẩn nút cuộn cho view Note
+  }
+}
+
+// Toggle Hamburger Menu
+function toggleHamburgerMenu() {
+  const navBar = document.getElementById("nav-bar");
+  navBar.classList.toggle("hidden");
+}
+
+// Thêm sự kiện cho form đăng nhập (chỉ khi ở login.html)
 if (document.getElementById("login-form")) {
   document.getElementById("login-form").addEventListener("submit", handleLogin);
 }
 
-// Gọi hàm render nếu đang ở index.html
-if (document.getElementById("credential-list")) {
-  renderCredentialSets();
+// Chạy khi DOM đã tải xong
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById("nav-bar")) { // Kiểm tra xem đây có phải index.html không
+        if (isLoggedIn()) {
+            // Gắn sự kiện cho nút hamburger
+            document.getElementById("hamburger-menu").onclick = toggleHamburgerMenu;
+
+            // Gắn sự kiện cho nút logout
+            const logoutButton = document.getElementById("logout-button");
+            if (logoutButton) {
+                logoutButton.addEventListener("click", logout);
+            }
+
+            showView("point"); // Mặc định hiển thị Point view sau khi đăng nhập
+            // Thiết lập sự kiện cho các nút điều hướng
+            document.getElementById("point-button").onclick = () => showView("point");
+            document.getElementById("note-button").onclick = () => showView("note");
+
+            // Bắt đầu cập nhật bộ đếm ngày và đồng hồ đếm ngược tự động
+            setInterval(updateIndividualDayCounters, 60 * 1000); // Cập nhật mỗi phút
+            // startCountdown() được gọi trong renderPointView, đảm bảo nó chạy khi view được render
+            // Tuy nhiên, ta cần đảm bảo scroll buttons được gán sự kiện sau khi DOM được tạo
+            setupScrollButtons();
+
+        } else {
+            window.location.href = "login.html"; // Chuyển hướng về trang đăng nhập nếu chưa đăng nhập
+        }
+    }
+});
+
+// Hàm thiết lập lại sự kiện cho các nút cuộn
+function setupScrollButtons() {
+    const scrollUpBtn = document.getElementById("scroll-up");
+    const scrollDownBtn = document.getElementById("scroll-down");
+
+    if (scrollUpBtn) {
+        // Xóa các sự kiện cũ trước khi thêm mới để tránh lặp
+        scrollUpBtn.removeEventListener("click", scrollToTop);
+        scrollUpBtn.removeEventListener("touchstart", scrollToTop);
+        scrollUpBtn.addEventListener("click", scrollToTop);
+        scrollUpBtn.addEventListener("touchstart", scrollToTop);
+    }
+
+    if (scrollDownBtn) {
+        // Xóa các sự kiện cũ trước khi thêm mới để tránh lặp
+        scrollDownBtn.removeEventListener("click", scrollToBottom);
+        scrollDownBtn.removeEventListener("touchstart", scrollToBottom);
+        scrollDownBtn.addEventListener("click", scrollToBottom);
+        scrollDownBtn.addEventListener("touchstart", scrollToBottom);
+    }
+}
+
+function scrollToTop(e) {
+    if (e) e.preventDefault(); // Ngăn chặn hành vi mặc định của touchstart
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function scrollToBottom(e) {
+    if (e) e.preventDefault(); // Ngăn chặn hành vi mặc định của touchstart
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
 }
