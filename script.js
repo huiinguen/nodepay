@@ -1,36 +1,36 @@
 // Dữ liệu ban đầu (thêm thuộc tính 'category' dưới dạng MẢNG)
 let credentialSets = [
-  { username: "huiinguyen", password: "H11223344y@", category: ["hoan_thanh_ca"] },
-  { username: "huiikk", password: "H112233y@", category: ["hoan_thanh_ca"] }, // Ví dụ nhiều đặc tính
-  { username: "huiikkk", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiitran", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiivan", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiinguyen", password: "H11223344y@" },
+  { username: "huiikk", password: "H112233y@" }, // Ví dụ nhiều đặc tính
+  { username: "huiikkk", password: "H112233y@" },
+  { username: "huiitran", password: "H112233y@" },
+  { username: "huiivan", password: "H112233y@" },
   { username: "huiiha", password: "H112233y@", category: ["signal"] },
-  { username: "huiiheo", password: "H112233y@", category: ["hoan_thanh_ca"] }, // Ví dụ nhiều đặc tính
-  { username: "huiimeo", password: "H112233y@", category:["hoan_thanh_ca"]},
+  { username: "huiiheo", password: "H112233y@" }, // Ví dụ nhiều đặc tính
+  { username: "huiimeo", password: "H112233y@"},
   { username: "hdddd", password: "H112233y@", category: ["signal"] },
-  { username: "huiik3", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik4", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik5", password: "H112233y@", category: ["hoan_thanh_ca","signal" ] },
-  { username: "huiik6", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik7", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik8", password: "H112233y@", category: ["hoan_thanh_ca","signal"] },
-  { username: "huiik9", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik10", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik11", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik12", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik13", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik14", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik15", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik16", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik17", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik18", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik19", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik20", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik21", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik22", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik23", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik24", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik3", password: "H112233y@"  },
+  { username: "huiik4", password: "H112233y@"},
+  { username: "huiik5", password: "H112233y@", category: ["signal" ] },
+  { username: "huiik6", password: "H112233y@"},
+  { username: "huiik7", password: "H112233y@"},
+  { username: "huiik8", password: "H112233y@", category: ["signal"] },
+  { username: "huiik9", password: "H112233y@"},
+  { username: "huiik10", password: "H112233y@"},
+  { username: "huiik11", password: "H112233y@"},
+  { username: "huiik12", password: "H112233y@"},
+  { username: "huiik13", password: "H112233y@"},
+  { username: "huiik14", password: "H112233y@"},
+  { username: "huiik15", password: "H112233y@"},
+  { username: "huiik16", password: "H112233y@"},
+  { username: "huiik17", password: "H112233y@"},
+  { username: "huiik18", password: "H112233y@"},
+  { username: "huiik19", password: "H112233y@"},
+  { username: "huiik20", password: "H112233y@"},
+  { username: "huiik21", password: "H112233y@"},
+  { username: "huiik22", password: "H112233y@"},
+  { username: "huiik23", password: "H112233y@"},
+  { username: "huiik24", password: "H112233y@"},
   { username: "huiik25", password: "H112233y@", category: ["chua_ket_noi_vi"] },
   { username: "huiik26", password: "H112233y@", category: ["chua_ket_noi_vi"] },
   { username: "huiik27", password: "H112233y@", category: ["chua_ket_noi_vi"] },
@@ -42,37 +42,37 @@ let credentialSets = [
 // Hàm tải dữ liệu từ localStorage hoặc dùng dữ liệu mặc định
 function loadCredentialSets() {
   const defaultCredentialSets = [
-  { username: "huiinguyen", password: "H11223344y@", category: ["hoan_thanh_ca"] },
-  { username: "huiikk", password: "H112233y@", category: ["hoan_thanh_ca"] }, // Ví dụ nhiều đặc tính
-  { username: "huiikkk", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiitran", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiivan", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiinguyen", password: "H11223344y@"},
+  { username: "huiikk", password: "H112233y@"}, // Ví dụ nhiều đặc tính
+  { username: "huiikkk", password: "H112233y@"},
+  { username: "huiitran", password: "H112233y@"},
+  { username: "huiivan", password: "H112233y@"},
   { username: "huiiha", password: "H112233y@", category: ["signal"] },
-  { username: "huiiheo", password: "H112233y@", category: ["hoan_thanh_ca"] }, // Ví dụ nhiều đặc tính
-  { username: "huiimeo", password: "H112233y@", category:["hoan_thanh_ca"]},
+  { username: "huiiheo", password: "H112233y@"}, // Ví dụ nhiều đặc tính
+  { username: "huiimeo", password: "H112233y@"},
   { username: "hdddd", password: "H112233y@", category: ["signal"] },
-  { username: "huiik3", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik4", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik5", password: "H112233y@", category: ["hoan_thanh_ca","signal" ] },
-  { username: "huiik6", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik7", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik8", password: "H112233y@", category: ["hoan_thanh_ca","signal"] },
-  { username: "huiik9", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik10", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik11", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik12", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik13", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik14", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik15", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik16", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik17", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik18", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik19", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik20", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik21", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik22", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik23", password: "H112233y@", category: ["hoan_thanh_ca"] },
-  { username: "huiik24", password: "H112233y@", category: ["hoan_thanh_ca"] },
+  { username: "huiik3", password: "H112233y@"},
+  { username: "huiik4", password: "H112233y@"},
+  { username: "huiik5", password: "H112233y@", category: ["signal" ] },
+  { username: "huiik6", password: "H112233y@"},
+  { username: "huiik7", password: "H112233y@"},
+  { username: "huiik8", password: "H112233y@", category: ["signal"] },
+  { username: "huiik9", password: "H112233y@"},
+  { username: "huiik10", password: "H112233y@"},
+  { username: "huiik11", password: "H112233y@"},
+  { username: "huiik12", password: "H112233y@"},
+  { username: "huiik13", password: "H112233y@"},
+  { username: "huiik14", password: "H112233y@"},
+  { username: "huiik15", password: "H112233y@"},
+  { username: "huiik16", password: "H112233y@"},
+  { username: "huiik17", password: "H112233y@"},
+  { username: "huiik18", password: "H112233y@"},
+  { username: "huiik19", password: "H112233y@"},
+  { username: "huiik20", password: "H112233y@"},
+  { username: "huiik21", password: "H112233y@"},
+  { username: "huiik22", password: "H112233y@"},
+  { username: "huiik23", password: "H112233y@"},
+  { username: "huiik24", password: "H112233y@"},
   { username: "huiik25", password: "H112233y@", category: ["chua_ket_noi_vi"] },
   { username: "huiik26", password: "H112233y@", category: ["chua_ket_noi_vi"] },
   { username: "huiik27", password: "H112233y@", category: ["chua_ket_noi_vi"] },
@@ -343,6 +343,7 @@ function renderPointView() {
 }
 
 // Hàm hiển thị danh sách thông tin đăng nhập theo loại (View "Note")
+// Hàm hiển thị danh sách thông tin đăng nhập theo loại (View "Note")
 function renderNoteView() {
   const mainContent = document.getElementById("main-content");
   if (!mainContent) return;
@@ -352,7 +353,7 @@ function renderNoteView() {
   const categories = {
     "signal": "Signal",
     "chua_ket_noi_vi": "Chưa kết nối ví",
-    "hoan_thanh_ca": "Hoàn thành cả",
+    // Bỏ "hoan_thanh_ca": "Hoàn thành cả",
   };
 
   // Group credentials by category
@@ -366,7 +367,8 @@ function renderNoteView() {
     const credCategories = Array.isArray(cred.category) ? cred.category : [cred.category].filter(Boolean);
     
     credCategories.forEach(cat => {
-        if (categorizedCredentials[cat]) {
+        // Chỉ thêm vào nếu category tồn tại trong danh sách categories
+        if (categories.hasOwnProperty(cat)) { 
             categorizedCredentials[cat].push(cred);
         }
     });
