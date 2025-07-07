@@ -426,11 +426,12 @@ button:hover {
 
   .scroll-buttons {
     flex-direction: row;
-    width: calc(100% - 40px);
-    justify-content: space-around;
-    bottom: 10px;
-    right: 10px;
-    left: 10px;
+    width: auto;
+    justify-content: flex-end;
+    bottom: 20px;
+    right: 20px;
+    left: auto;
+    gap: 10px; 
   }
 
   .scroll-buttons button {
